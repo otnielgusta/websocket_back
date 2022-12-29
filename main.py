@@ -60,7 +60,15 @@ def handle_message(data):
     mensagem = Mensagem.from_dict(data.get("mensagem"))
     Conversa.conversa.append(mensagem)
     resposta = mensagem.to_json()
-    emit('getMessage', resposta, json=True, broadcast=True)
+    emit("pegaConversa", Conversa.retorna_conversa(), json=True, broadcast=True)
+
+# @socketio.on('message')
+# def handle_message(data):
+#     print(data)
+#     mensagem = Mensagem.from_dict(data.get("mensagem"))
+#     Conversa.conversa.append(mensagem)
+#     resposta = mensagem.to_json()
+#     emit('getMessage', resposta, json=True, broadcast=True)
 
 @socketio.on('todaConversa')
 def retorn_toda_conversa():
